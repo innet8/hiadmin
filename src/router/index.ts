@@ -26,6 +26,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/admin',
     component: Layout,
+    redirect: '/admin/dashboard',
     children: [
       {
         path: 'dashboard', // 默认跳转不用写路径
