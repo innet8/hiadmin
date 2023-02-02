@@ -3,6 +3,6 @@
 
 <template>
   <main>
-    <div>403 暂无权限</div>
+    <div>500 服务器报错</div>
   </main>
 </template>
