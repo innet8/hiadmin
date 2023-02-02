@@ -1,17 +1,16 @@
 <script setup lang="ts">
+import Header from '../components/Header.vue'
+import Navigation from '../components/Navigation.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>
   <!-- 头部 -->
-  <header>header</header>
+  <Header />
   <!-- 导航 -->
-  <aside>
-    nav<br />
-    <router-link to="/admin/dashboard">dashboard</router-link><br />
-    <router-link to="/admin/settings">settings</router-link><br />
-  </aside>
+  <Navigation />
   <!-- 主体 -->
-  <main><router-view /></main>
+  <main class="relative"><router-view /></main>
   <!-- 尾部 -->
-  <footer>footer</footer>
+  <Footer />
 </template>
