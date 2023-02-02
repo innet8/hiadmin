@@ -82,16 +82,18 @@ router.beforeEach((to, from, next) => {
   // NProgress.start()
   // 设置title
   if (to?.meta?.title) document.title = `${to.meta.title}`
-  // 根据白名单的登录状态进行鉴权
-  if (to?.meta?.isWhite) return next()
   // 已经有token存在本地
   const token = localStorage.getItem('token')
   if (token) {
+    // 如果已经登录，不可进入登录、注册页面
+    if (['/login', '/register'].includes(to.path)) return next('/admin')
     // 如果没有权限，则进入403
     // if (!isPermiss()) return next('/403')
-    //
+    // 显示页面
     return next()
   }
+  // 根据白名单的登录状态进行鉴权
+  if (to?.meta?.isWhite) return next()
   // 跳转登录
   return next('/login')
 })
