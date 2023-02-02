@@ -7,7 +7,7 @@ export interface UserInfo {
   avatar?: string
 }
 
-interface UserState {
+export interface UserState {
   userInfo: UserInfo
   token?: string
 }
@@ -31,11 +31,11 @@ export const useUserStore = defineStore('user', {
     }
   },
   actions: {
-    setToken(token: string) {
-      this.token = token
-    },
     setUserInfo(info: UserInfo) {
       this.userInfo = info
+    },
+    setToken(token: string) {
+      this.token = token
     }
   }
 })
