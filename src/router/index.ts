@@ -69,7 +69,8 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  // NProgress.start(); // 打开进度条
+  // 打开进度条
+  // NProgress.start()
   // 设置title
   if (to?.meta?.title) document.title = `${to.meta.title}`
   // 根据白名单的登录状态进行鉴权
@@ -86,7 +87,8 @@ router.beforeEach((to, from, next) => {
   return next('/login')
 })
 router.afterEach(() => {
-  // NProgress.done(); // 关闭进度条
+  // 关闭进度条
+  // NProgress.done()
 })
 
 export default router

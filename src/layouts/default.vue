@@ -2,7 +2,11 @@
 </script>
 
 <template>
+  <!-- 头部 -->
+  <header>header</header>
+  <!-- 导航 -->
+  <aside>nav</aside>
   <main>
-    <div>Default Layout</div>
+    <router-view />
   </main>
 </template>
