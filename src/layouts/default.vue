@@ -6,7 +6,8 @@
   <header>header</header>
   <!-- 导航 -->
   <aside>nav</aside>
-  <main>
-    <router-view />
-  </main>
+  <!-- 主体 -->
+  <main><router-view /></main>
+  <!-- 尾部 -->
+  <footer>footer</footer>
 </template>
