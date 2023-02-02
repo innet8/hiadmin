@@ -1,14 +1,21 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useUserInfoStore = defineStore('userInfo', () => {
-  const userInfo = ref({})
+interface ListItem {
+  name: string
+  path: string
+  title: string
+}
 
-  function setUserInfo(name: object) {
-    userInfo.value = name
-  }
-
-  return {
-    userInfo
+export const useUserInfoStore = defineStore('userInfo', {
+  state: () => {
+    return {
+      list: <ListItem[]>[]
+    }
+  },
+  getters: {},
+  actions: {
+    setUserInfo(data: ListItem[]) {
+      this.list = data
+    }
   }
 })
