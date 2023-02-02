@@ -24,7 +24,8 @@ export default defineConfig(({ mode }) => {
     resolve: {
       // 配置路径别名
       alias: {
-        '@/': resolve(__dirname, './src/')
+        '@/': resolve(__dirname, './src/'),
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
       }
     },
     build: {

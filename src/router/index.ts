@@ -1,3 +1,4 @@
+import type { App } from 'vue'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../layouts/default.vue'
 
@@ -102,4 +103,10 @@ router.afterEach(() => {
   // NProgress.done()
 })
 
-export default router
+export async function setupRouter(app: App) {
+  app.use(router);
+  // 路由准备就绪后挂载APP实例
+  await router.isReady();
+}
+
+export default router;
