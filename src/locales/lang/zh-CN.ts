@@ -1,1 +1,3 @@
-export default {}
+export default {
+  signIn: '登录'
+}
