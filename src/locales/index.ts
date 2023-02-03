@@ -28,7 +28,6 @@ function localeLoop<T>(data: T): localeType<T>[] {
 export function localeList() {
   return localeLoop(LOCALE)
 }
-
 // 语言key列表
 export function localeListKey() {
   const arr = []
@@ -41,13 +40,13 @@ export function localeListKey() {
 //
 async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
-  let locale = 'zh-CN'
+  let locale: string = 'zh-CN'
   // 本地用户设置语言
-  const localLang = localStorage.getItem('language')
+  const localLang = localStorage.getItem('language') || ''
   // 浏览器默认语言
-  const navigatorLang = window.navigator?.language
-  //
-  if (localLang) {
+  const navigatorLang = window.navigator?.language || ''
+  // 判断
+  if (localeListKey().includes(localLang)) {
     locale = localLang
   } else if (localeListKey().includes(navigatorLang)) {
     locale = navigatorLang
