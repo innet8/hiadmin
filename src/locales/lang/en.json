@@ -1,4 +1,7 @@
 {
   "signIn": "Sign in",
-  "register": "Register"
+  "emailAddress": "Email address",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot your password?"
 }

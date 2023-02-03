@@ -37,7 +37,7 @@ const localeList = [
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" action="#" method="POST">
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+            <label for="email" class="block text-sm font-medium text-gray-700">{{ $t('emailAddress') }}</label>
             <div class="mt-1">
               <input
                 id="email"
@@ -63,7 +63,7 @@ const localeList = [
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <label for="password" class="block text-sm font-medium text-gray-700">{{ $t('password') }}</label>
             <div class="mt-1">
               <input
                 id="password"
@@ -91,11 +91,11 @@ const localeList = [
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+              <label for="remember-me" class="ml-2 block text-sm text-gray-900">{{ $t('rememberMe') }}</label>
             </div>
 
             <div class="text-sm">
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">{{ $t('forgotPassword') }}</a>
             </div>
           </div>
 
