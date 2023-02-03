@@ -1,5 +1,6 @@
 import { unref } from 'vue'
 import { i18n } from '../locales/index'
+import { setLanguage } from '../utils'
 import type { LocaleType } from '../types/config'
 
 export const loadLocalePool: LocaleType[] = []
@@ -14,7 +15,7 @@ function setI18nLanguage(locale: LocaleType) {
 
 export async function changeLocale(locale: LocaleType) {
   // 设置本地用户语言
-  localStorage.setItem('language', locale)
+  setLanguage(locale)
   //
   const globalI18n = i18n.global
   const currentLocale = unref(globalI18n.locale)

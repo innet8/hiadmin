@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { getLanguage } from '../utils'
 import type { App } from 'vue'
 import type { I18n, I18nOptions } from 'vue-i18n'
 import type { LocaleType } from '../types/config'
@@ -9,7 +10,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
   let locale: LocaleType = 'zh-CN'
   // 本地用户设置语言
-  const localLang = localStorage.getItem('language') as LocaleType
+  const localLang = getLanguage() as LocaleType
   // 浏览器默认语言
   const navigatorLang = window.navigator?.language as LocaleType
   // 判断

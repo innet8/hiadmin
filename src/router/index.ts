@@ -1,4 +1,5 @@
 import type { App } from 'vue'
+import { getToken } from '../utils'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../layouts/default.vue'
 
@@ -84,7 +85,7 @@ router.beforeEach((to, from, next) => {
   // 设置title
   if (to?.meta?.title) document.title = `${to.meta.title}`
   // 已经有token存在本地
-  const token = localStorage.getItem('token')
+  const token = getToken()
   if (token) {
     // 如果已经登录，不可进入登录、注册页面
     if (['/login', '/register'].includes(to.path)) return next('/admin')
