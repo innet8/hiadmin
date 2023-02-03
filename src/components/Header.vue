@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import { delToken } from '../utils'
 
 const router = useRouter()
-const handleLogOut = () => {
+const handleLogout = () => {
   delToken()
   router.replace('/login')
 }
@@ -13,7 +13,7 @@ const handleLogOut = () => {
   <header>
     <hr />
     header<br />
-    <a href="javascript:;" rel="noopener noreferrer" class="text-blue-500" @click="handleLogOut">退出登录</a>
+    <a href="javascript:;" rel="noopener noreferrer" class="text-blue-500" @click="handleLogout">退出登录</a>
     <hr />
   </header>
 </template>
