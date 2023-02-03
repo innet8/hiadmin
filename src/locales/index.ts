@@ -2,20 +2,51 @@ import type { App } from 'vue'
 import type { I18n, I18nOptions } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 
+// 语言
+export enum LOCALE {
+  'en' = '英文',
+  'zh-CN' = '简体中文',
+  'zh-TC' = '繁体中文'
+}
+
+// 循环枚举
+interface localeType<T> {
+  text?: keyof T
+  event?: string
+}
+function localeLoop<T>(data: T): localeType<T>[] {
+  const arr: localeType<T>[] = []
+  for (const key in data) {
+    arr.push({
+      text: data[key] as any,
+      event: key
+    })
+  }
+  return arr
+}
+// 语言列表
+export function localeList() {
+  return localeLoop(LOCALE)
+}
+
 //
 async function createI18nOptions(): Promise<I18nOptions> {
-  const locale = localStorage.getItem('language') || 'en'
+  const locale = localStorage.getItem('language') || 'zh-CN'
   const defaultLocal = await import(`./lang/${locale}.json`)
   const message = defaultLocal?.default ?? {}
-  // 
+  //
   return {
-    // locale: 'en', // 语言标识 locale.value => 通过切换locale的值来实现语言切换
+    locale, // 语言标识 locale.value => 通过切换locale的值来实现语言切换
     legacy: false, // 使用 Composition API 模式，则需要将其设置为false
     fallbackLocale: 'zh-CN', // 没有英文的时候默认中文语言
     globalInjection: true, // 全局注入 $t 函数
-    // silentFallbackWarn: true, // 设置为true后，在组件内使用时在浏览器不会报警告
+    // availableLocales: ['en', 'zh-CN'], // 语言列表
+    // sync: true, // 如果不想从全局范围继承语言环境，则需要将i18n组件选项的sync设置为false
+    // silentTranslationWarn: true, // 关闭warn
+    // missingWarn: false, // 关闭warn
+    // silentFallbackWarn: true, // 关闭warn
     messages: {
-      [locale]: message as { [key: string]: string }
+      [locale]: message
     }
   }
 }
