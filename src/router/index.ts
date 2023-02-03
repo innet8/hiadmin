@@ -83,7 +83,7 @@ router.beforeEach((to, from, next) => {
   // 打开进度条
   // NProgress.start()
   // 设置title
-  if (to?.meta?.title) document.title = `${to.meta.title}`
+  if (to?.meta?.title) document.title = `${to.meta.title} - hiAdmin`
   // 已经有token存在本地
   const token = getToken()
   if (token) {
