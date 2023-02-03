@@ -40,9 +40,9 @@ async function createI18nOptions(): Promise<I18nOptions> {
 }
 
 //
-export let i18n: ReturnType<typeof createI18n>
+export let i18n: I18n
 export async function setupI18n(app: App) {
   const options = await createI18nOptions()
-  i18n = createI18n(options) as I18n
+  i18n = createI18n(options)
   app.use(i18n)
 }

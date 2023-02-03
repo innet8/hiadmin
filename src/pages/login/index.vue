@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { LocaleType } from '../../types/config'
 // 切换语言方法
 import { changeLocale } from '../../hooks/useLocale'
+
 // 语言列表
-const localeList = [
+const localeList: { lang: LocaleType; text: string }[] = [
   {
     lang: 'en',
     text: '英文'
@@ -44,7 +46,6 @@ const localeList = [
                 name="email"
                 type="email"
                 autocomplete="email"
-                required=""
                 class="
                   block
                   w-full
@@ -70,7 +71,6 @@ const localeList = [
                 name="password"
                 type="password"
                 autocomplete="current-password"
-                required=""
                 class="
                   block
                   w-full
