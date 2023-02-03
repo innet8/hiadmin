@@ -10,7 +10,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
   let locale: LocaleType = 'zh-CN'
   // 本地用户设置语言
-  const localLang = getLanguage() as LocaleType
+  const localLang = getLanguage()
   // 浏览器默认语言
   const navigatorLang = window.navigator?.language as LocaleType
   // 判断
