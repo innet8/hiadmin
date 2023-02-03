@@ -1,7 +1,45 @@
 <script setup lang="ts">
+import { unref } from 'vue'
+import { i18n } from '../../locales'
+
+// 语言列表
+const localeList = [
+  {
+    lang: 'en',
+    text: '英文'
+  },
+  {
+    lang: 'zh-CN',
+    text: '简体中文'
+  },
+  {
+    lang: 'zh-TC',
+    text: '繁体中文'
+  }
+]
+
+const handleChageLanguage = (locale: string) => {
+  // 判断当前语言
+  const globalI18n = i18n.global
+  const currentLocale = unref(globalI18n.locale)
+  if (currentLocale === locale) {
+    return locale
+  }
+
+  if (i18n.mode === 'legacy') {
+    i18n.global.locale = locale
+  } else {
+    ;(i18n.global.locale as any).value = locale
+  }
+  console.log(i18n.global.locale)
+  // i18n.global.locale = lang
+}
 </script>
 
 <template>
+  <div class="ml-10 flex items-baseline space-x-4">
+    <a v-for="item in localeList" :key="item.lang" href="#" class="px-3 py-2 rounded-md text-sm font-medium" @click="handleChageLanguage(item.lang)">{{ item.text }}</a>
+  </div>
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
