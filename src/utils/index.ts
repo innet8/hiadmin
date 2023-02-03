@@ -10,6 +10,10 @@ export function getToken() {
 export function setToken(data: string) {
   return localStorage.setItem(TOKEN, data)
 }
+// 删除token
+export function delToken() {
+  return localStorage.removeItem(TOKEN)
+}
 
 //
 export const LANGUAGE = 'hiadmin_language'.toUpperCase()

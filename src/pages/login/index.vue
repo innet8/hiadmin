@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+import { setToken } from '../../utils'
 import type { LocaleType } from '../../types/config'
 // 切换语言方法
 import { changeLocale } from '../../hooks/useLocale'
@@ -18,6 +20,12 @@ const localeList: { lang: LocaleType; text: string }[] = [
     text: '繁体中文'
   }
 ]
+
+const router = useRouter()
+const handleSignIn = () => {
+  setToken('hahaha')
+  router.replace('/admin')
+}
 </script>
 
 <template>
@@ -37,7 +45,7 @@ const localeList: { lang: LocaleType; text: string }[] = [
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">{{ $t('emailAddress') }}</label>
             <div class="mt-1">
@@ -118,6 +126,7 @@ const localeList: { lang: LocaleType; text: string }[] = [
                 hover:bg-indigo-700
                 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
               "
+              @click="handleSignIn"
             >
               {{ $t('signIn') }}
             </button>
