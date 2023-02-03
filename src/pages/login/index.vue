@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// 
-import { changeLocale } from '../../locales/useLocale'
+// 切换语言方法
+import { changeLocale } from '../../hooks/useLocale'
 // 语言列表
 const localeList = [
   {
