@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 // vuex
-import { setupStore } from './store'
+import { createPinia } from 'pinia'
 // i18n
 import { setupI18n } from './locales'
 // router
@@ -13,7 +13,7 @@ import App from './App.vue'
 const app = createApp(App)
 async function setupApp() {
   // 挂载vuex状态管理
-  await setupStore(app)
+  app.use(createPinia())
   // 挂载i18n翻译
   await setupI18n(app)
   // 挂载路由
