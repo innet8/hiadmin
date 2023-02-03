@@ -5,8 +5,8 @@ import { createI18n } from 'vue-i18n'
 // 语言
 export enum LOCALE {
   'en' = '英文',
-  'zh-cn' = '简体中文',
-  'zh-tc' = '繁体中文'
+  'zh-CN' = '简体中文',
+  'zh-TC' = '繁体中文'
 }
 
 // 循环枚举
@@ -41,12 +41,12 @@ export function localeListKey() {
 //
 async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
-  let locale = 'zh-cn'
+  let locale = 'zh-CN'
   // 本地用户设置语言
   const localLang = localStorage.getItem('language')
   // 浏览器默认语言
-  const navigatorLang = window.navigator?.language?.toLowerCase()
-  // 
+  const navigatorLang = window.navigator?.language
+  //
   if (localLang) {
     locale = localLang
   } else if (localeListKey().includes(navigatorLang)) {
@@ -61,7 +61,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
     legacy: false, // 使用 Composition API 模式，则需要将其设置为false
     fallbackLocale: locale, // 没有设置locale的时候，默认用这个设置的语言
     globalInjection: true, // 全局注入 $t 函数
-    // availableLocales: ['en', 'zh-CN'], // 语言列表
+    availableLocales: localeListKey(), // 语言列表 ['en', 'zh-CN']
     // sync: true, // 如果不想从全局范围继承语言环境，则需要将i18n组件选项的sync设置为false
     // silentTranslationWarn: true, // 关闭warn
     // missingWarn: false, // 关闭warn
