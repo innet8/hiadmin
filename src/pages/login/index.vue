@@ -4,7 +4,6 @@ import { setToken } from '../../utils'
 import type { LocaleType } from '../../types/config'
 // 切换语言方法
 import { changeLocale } from '../../hooks/useLocale'
-
 // 语言列表
 const localeList: { lang: LocaleType; text: string }[] = [
   {
@@ -20,7 +19,7 @@ const localeList: { lang: LocaleType; text: string }[] = [
     text: '繁体中文'
   }
 ]
-
+// 登录
 const router = useRouter()
 const handleSignIn = () => {
   setToken('hahaha')
