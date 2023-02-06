@@ -3,8 +3,8 @@ import type { LocaleType } from '../types/config'
 //
 export const TOKEN = 'hiadmin_token'.toUpperCase()
 // 获取token
-export function getToken() {
-  return localStorage.getItem(TOKEN)
+export function getToken(): string {
+  return localStorage.getItem(TOKEN) || ''
 }
 // 设置token
 export function setToken(data: string) {
@@ -13,6 +13,9 @@ export function setToken(data: string) {
 // 删除token
 export function delToken() {
   return localStorage.removeItem(TOKEN)
+}
+export function hasToken(): boolean {
+  return !!localStorage.getItem(TOKEN)
 }
 
 //

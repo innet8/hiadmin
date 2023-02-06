@@ -28,7 +28,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
     legacy: false, // 使用 Composition API 模式，则需要将其设置为false
     fallbackLocale: locale, // 没有设置locale的时候，默认用这个设置的语言
     globalInjection: true, // 全局注入 $t 函数
-    // availableLocales: [], // 语言列表
+    // availableLocales: [], // 已存在的语言列表
     // sync: true, // 如果不想从全局范围继承语言环境，则需要将i18n组件选项的sync设置为false
     // silentTranslationWarn: true, // 关闭warn
     // missingWarn: false, // 关闭warn

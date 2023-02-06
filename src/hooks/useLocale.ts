@@ -28,12 +28,16 @@ export async function changeLocale(locale: LocaleType) {
     setI18nLanguage(locale)
     return locale
   }
-  // 获取语言包
-  const defaultLocal = await import(`../locales/lang/${locale}.json`)
-  const message = defaultLocal?.default ?? {}
-  // 重新设置语言包
-  globalI18n.setLocaleMessage(locale, message)
-  //
-  setI18nLanguage(locale)
-  return locale
+  try {
+    // 获取语言包
+    const defaultLocal = await import(`../locales/lang/${locale}.json`)
+    const message = defaultLocal?.default ?? {}
+    // 重新设置语言包
+    globalI18n.setLocaleMessage(locale, message)
+    //
+    setI18nLanguage(locale)
+    return locale
+  } catch (error) {
+    console.log(`${locale}.json的语言包不存在`)
+  }
 }

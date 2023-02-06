@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import { getToken } from '../utils'
+import { hasToken } from '../utils'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../layouts/default.vue'
 
@@ -83,14 +83,13 @@ router.beforeEach((to, from, next) => {
   // 打开进度条
   // NProgress.start()
   // 设置title
-  if (to?.meta?.title) document.title = `${to.meta.title} - hiadmin`
+  if (to?.meta?.title) document.title = to.meta.title as string
   // 已经有token存在本地
-  const token = getToken()
-  if (token) {
+  if (hasToken()) {
     // 如果已经登录，不可进入登录、注册页面
     if (['/login', '/register'].includes(to.path)) return next('/admin')
     // 如果没有权限，则进入403
-    // if (!isPermiss()) return next('/403')
+    // if (!hasPermission()) return next('/403')
     // 显示页面
     return next()
   }
