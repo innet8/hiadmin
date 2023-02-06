@@ -14,7 +14,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../pages/login/index.vue'),
     meta: {
       title: '登录',
-      isWhite: true // 是否为白名单 为true时不需要登录
+      hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
   {
@@ -22,7 +22,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../pages/register/index.vue'),
     meta: {
       title: '免费注册',
-      isWhite: true // 是否为白名单 为true时不需要登录
+      hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
   {
@@ -31,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
     redirect: '/admin/dashboard',
     children: [
       {
-        path: 'dashboard', // 默认跳转不用写路径
+        path: 'dashboard', // 默认
         component: () => import('../pages/dashboard/index.vue'),
         meta: {
           title: '仪表盘'
@@ -51,7 +51,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../layouts/500.vue'),
     meta: {
       title: '服务器报错',
-      isWhite: true // 是否为白名单 为true时不需要登录
+      hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
   {
@@ -59,7 +59,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../layouts/403.vue'),
     meta: {
       title: '暂无权限',
-      isWhite: true // 是否为白名单 为true时不需要登录
+      hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
   {
@@ -67,7 +67,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../layouts/404.vue'),
     meta: {
       title: '页面不存在',
-      isWhite: true // 是否为白名单 为true时不需要登录
+      hasWhite: true // 是否为白名单 为true时不需要登录
     }
   }
 ]
@@ -94,7 +94,7 @@ router.beforeEach((to, from, next) => {
     return next()
   }
   // 根据白名单的登录状态进行鉴权
-  if (to?.meta?.isWhite) return next()
+  if (to?.meta?.hasWhite) return next()
   // 跳转登录
   return next('/login')
 })
