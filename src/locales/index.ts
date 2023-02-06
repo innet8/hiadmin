@@ -1,7 +1,6 @@
-import { createI18n } from 'vue-i18n'
+import { type App } from 'vue'
+import { createI18n, type I18n, type I18nOptions } from 'vue-i18n'
 import { getLanguage } from '../utils'
-import type { App } from 'vue'
-import type { I18n, I18nOptions } from 'vue-i18n'
 import type { LocaleType } from '../types/config'
 // 语言列表
 export const localeList: LocaleType[] = ['en', 'zh-CN', 'zh-TC']

@@ -1,5 +1,4 @@
-import axios from 'axios'
-import type { InternalAxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { type InternalAxiosRequestConfig, type AxiosResponse } from 'axios'
 
 // 返回数据结构
 // interface ResponseData<T = any> {

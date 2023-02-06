@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+import { type App } from 'vue'
 import { hasToken } from '../utils'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '../layouts/default.vue'
