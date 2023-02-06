@@ -19,7 +19,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
     locale = navigatorLang
   }
   // 获取语言包
-  const defaultLocal = await import(`./lang/${locale}.json`)
+  const defaultLocal = await import(`./lang/${locale}.ts`)
   const message = defaultLocal?.default ?? {}
   //
   return {

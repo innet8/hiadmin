@@ -30,7 +30,7 @@ export async function changeLocale(locale: LocaleType) {
   }
   try {
     // 获取语言包
-    const defaultLocal = await import(`../locales/lang/${locale}.json`)
+    const defaultLocal = await import(`../locales/lang/${locale}.ts`)
     const message = defaultLocal?.default ?? {}
     // 重新设置语言包
     globalI18n.setLocaleMessage(locale, message)
@@ -38,6 +38,6 @@ export async function changeLocale(locale: LocaleType) {
     setI18nLanguage(locale)
     return locale
   } catch (error) {
-    console.log(`${locale}.json的语言包不存在`)
+    console.log(`${locale}.ts的语言包不存在`)
   }
 }
