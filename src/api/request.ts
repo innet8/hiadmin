@@ -1,4 +1,5 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosResponse } from 'axios'
+import { getLanguage, getToken } from '../utils'
 
 // 返回数据结构
 // interface ResponseData<T = any> {
@@ -25,8 +26,9 @@ const request = axios.create({
 request.interceptors.request.use(
   (config: Config) => {
     // 设置token
-    const token = window.localStorage.getItem('token')
-    if (token) config.headers.Authorization = `Bearer ${token}`
+    if (getToken()) config.headers['Authorization'] = `Bearer ${getToken()}`
+    // 设置语言
+    if (getLanguage()) config.headers['Accept-Language'] = getLanguage()
     // 默认开启loding
     if (config.isLoading !== false) {
     }
