@@ -2,8 +2,10 @@ import { type App } from 'vue'
 import { createI18n, type I18n, type I18nOptions } from 'vue-i18n'
 import { getLanguage } from '../utils'
 import type { LocaleType } from '../types/config'
+
 // 语言列表
 export const localeList: LocaleType[] = ['en', 'zh-CN', 'zh-TC']
+
 //
 async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言

@@ -50,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/500',
     component: () => import('../layouts/500.vue'),
     meta: {
-      title: '服务器报错',
+      title: '500 服务器报错',
       hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
@@ -58,7 +58,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/403',
     component: () => import('../layouts/403.vue'),
     meta: {
-      title: '暂无权限',
+      title: '403 暂无权限',
       hasWhite: true // 是否为白名单 为true时不需要登录
     }
   },
@@ -66,7 +66,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/:pathMatch(.*)*',
     component: () => import('../layouts/404.vue'),
     meta: {
-      title: '页面不存在',
+      title: '404 页面不存在',
       hasWhite: true // 是否为白名单 为true时不需要登录
     }
   }

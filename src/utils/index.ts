@@ -1,6 +1,6 @@
 import type { LocaleType } from '../types/config'
 
-//
+// token key
 export const TOKEN = 'hiadmin_token'.toUpperCase()
 // 获取token
 export function getToken(): string {
@@ -18,7 +18,7 @@ export function hasToken(): boolean {
   return !!localStorage.getItem(TOKEN)
 }
 
-//
+// language key
 export const LANGUAGE = 'hiadmin_language'.toUpperCase()
 // 获取语言
 export function getLanguage(): LocaleType {
