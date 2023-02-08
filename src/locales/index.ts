@@ -19,6 +19,9 @@ async function createI18nOptions(): Promise<I18nOptions> {
     locale = localLang
   } else if (localeList.includes(navigatorLang)) {
     locale = navigatorLang
+  } else if (['zh-TW', 'zh-HK'].includes(navigatorLang)) {
+    // 台湾、香港 => zh-TC
+    localeList.includes('zh-TC') && (locale = 'zh-TC')
   }
   // 获取语言包
   const defaultLocal = await import(`./lang/${locale}.ts`)
