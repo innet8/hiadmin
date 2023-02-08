@@ -27,11 +27,15 @@ router.beforeEach((to, from, next) => {
   // 跳转登录
   return next('/login')
 })
-
 // 路由守卫
-router.afterEach((to) => {
+router.afterEach((to, from) => {
   // 关闭进度条
   // NProgress.done()
+})
+// 路由跳转错误
+router.onError((error) => {
+  // Message.error(error.message)
+  // NProgress.error()
 })
 
 export async function setupRouter(app: App) {
