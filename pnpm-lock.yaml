@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/lodash': ^4.14.191
   '@types/node': ^18.11.18
   '@vitejs/plugin-vue': ^4.0.0
   autoprefixer: ^10.4.13
@@ -25,6 +26,7 @@ dependencies:
   vue-router: 4.1.6_vue@3.2.47
 
 devDependencies:
+  '@types/lodash': 4.14.191
   '@types/node': 18.11.18
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.1+vue@3.2.47
   autoprefixer: 10.4.13_postcss@8.4.21
@@ -353,6 +355,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/node/18.11.18:
