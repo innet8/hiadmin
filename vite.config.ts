@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
     plugins: [vue()],
     server: {
       host: '0.0.0.0', // 服务器ip地址
-      port: +env.APP_PORT, // 本地端口
+      port: (+env.APP_PORT || 3000), // 本地端口
       // open: true, // 是否自动在浏览器打开
       proxy: {
         '/api': {
