@@ -19,6 +19,6 @@ export function login(data: LoginType) {
  * 退出
  * @returns
  */
-export function logout(params: object) {
-  return $get('/logout', { params })
+export function logout() {
+  return $get('/logout')
 }
