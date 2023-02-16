@@ -48,6 +48,10 @@ export class WebsocketClient {
            * window.addEventListener(EVENT_WS_CLOSE, error => {
            *    console.log(error)
            * });
+           * // 关闭页面记得移除事件
+           * window.removeEventListener(EVENT_WS_MESSAGE, error => {
+           *    console.log(error)
+           * })
            */
           // 创建一个事件对象
           new CustomEvent(EVENT_WS_CLOSE, {
@@ -78,6 +82,10 @@ export class WebsocketClient {
          * window.addEventListener(EVENT_WS_MESSAGE, detail => {
          *    console.log(detail)
          * });
+         * // 关闭页面记得移除事件
+         * window.removeEventListener(EVENT_WS_MESSAGE, detail => {
+         *    console.log(detail)
+         * })
          */
         // 创建一个事件对象
         new CustomEvent(EVENT_WS_MESSAGE, {
