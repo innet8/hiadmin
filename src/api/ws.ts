@@ -17,7 +17,7 @@ export class WebsocketClient {
   messageSocket?: WebSocket
   // 重启ws时间
   retryDelay = 200
-
+  // 实例化的时候执行该方法
   constructor() {
     try {
       this.connect()
@@ -25,11 +25,11 @@ export class WebsocketClient {
       console.warn(`ws: failed to connect to ws ${error}`)
     }
   }
-
+  // 连接ws
   connect(): void {
     if (navigator.webdriver) return
     // 路由
-    const wsUrl = `${window.location.protocol.replace('http', 'ws')}//${window.location.host}/ws/`
+    const wsUrl = `${window.location.protocol.replace('http', 'ws')}//${window.location.host}/ws/client/`
     // 实例化
     this.messageSocket = new WebSocket(wsUrl)
     // 打开
