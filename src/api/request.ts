@@ -2,12 +2,11 @@ import axios, { type InternalAxiosRequestConfig, type AxiosResponse, type AxiosE
 import { getLanguage, getToken } from '../utils'
 
 // 返回数据结构
-// interface ResponseData<T = any> {
-//   code?: number
-//   data?: T
-//   message?: string
-// }
-//
+export type Response<T = any> = {
+  code: number
+  message: string
+  data?: T
+}
 
 // 状态枚举
 export enum CODE {
