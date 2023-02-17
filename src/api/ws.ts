@@ -14,9 +14,9 @@ export interface WSMessage {
 
 export class WebsocketClient {
   // ws实例
-  messageSocket?: WebSocket
+  public messageSocket?: WebSocket
   // 重启ws时间
-  retryDelay = 200
+  public retryDelay = 200
   // 实例化的时候执行该方法
   constructor() {
     try {
