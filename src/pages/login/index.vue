@@ -5,6 +5,7 @@ import type { LocaleType } from '../../types/config'
 // 切换语言方法
 import { changeLocale } from '../../hooks/useLocale'
 import HInput from '../../components/HInput/HInput.vue'
+import { ref } from 'vue'
 // 语言列表
 const localeList: { lang: LocaleType; text: string }[] = [
   {
@@ -20,9 +21,16 @@ const localeList: { lang: LocaleType; text: string }[] = [
     text: '繁体中文'
   }
 ]
+
+const loginForm = ref({
+  username: '',
+  password: '',
+})
+
 // 登录
 const router = useRouter()
 const handleSignIn = () => {
+  alert(`Hello, ${loginForm.value.username}`)
   setToken('hahaha')
   router.replace('/admin')
 }
@@ -44,24 +52,25 @@ const handleSignIn = () => {
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" :onsubmit="() => false">
+        <form class="space-y-6" @submit="() => false">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">{{ $t('emailAddress') }}</label>
             <div class="mt-1">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-              />
+<!--              <input-->
+<!--                id="email"-->
+<!--                name="email"-->
+<!--                type="email"-->
+<!--                autocomplete="email"-->
+<!--                class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"-->
+<!--              />-->
+              <HInput v-model="loginForm.username" native-type="email" autocomplete="email"></HInput>
             </div>
           </div>
 
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">{{ $t('password') }}</label>
             <div class="mt-1">
-              <HInput native-type="password"></HInput>
+              <HInput v-model="loginForm.password" native-type="password"></HInput>
             </div>
           </div>
 

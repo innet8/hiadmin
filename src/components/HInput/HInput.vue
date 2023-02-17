@@ -2,7 +2,7 @@
   <div class='h-input-wrapper group'>
     <input
       :type="nativeType"
-      autocomplete="off"
+      :autocomplete="autocomplete"
       class="h-input"
       :class="customClass"
       :value="modelValue"
@@ -17,6 +17,11 @@ const props = defineProps({
   autocomplete: {
     type: String,
     default: "off",
+    required: false,
+  },
+  clearable: {
+    type: Boolean,
+    default: false,
     required: false,
   },
   customClass: {
@@ -40,7 +45,7 @@ const props = defineProps({
     required: false,
   },
   modelValue: {
-    type: String,
+    type: () => [String, Number, Object],
     default: '',
   },
   nativeType: {
@@ -58,11 +63,12 @@ const props = defineProps({
 
 <style lang='scss' scoped>
 .h-input-wrapper {
-  @apply block w-full sm:text-sm rounded-md border rounded-md border-gray-300 transition-colors duration-150 ease-in-out
-  shadow-sm group-focus:border-indigo-500 group-focus:outline-none group-focus:ring-indigo-500;
+  @apply flex w-full sm:text-sm rounded-md border border-gray-300 transition-colors duration-150 ease-in-out shadow-sm
+  focus-within:shadow-md focus-within:border-indigo-500 focus-within:outline-none focus-within:ring-indigo-500;
 
   .h-input {
-    @apply w-full px-3 py-2 appearance-none rounded-md placeholder-gray-400;
+    @apply relative px-3 py-2 w-full appearance-none rounded-md border-0 ring-0 border-transparent
+    placeholder-gray-400 z-[0];
   }
 }
 </style>
