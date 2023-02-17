@@ -103,7 +103,7 @@ const clearBtnClick = () => {
   }
 
   .clearable-btn {
-    @apply relative h-fit text-gray-500 bg-gray-200 rounded-full cursor-pointer z-[1]
+    @apply relative h-fit text-gray-400 bg-gray-200 rounded-full cursor-pointer z-[1]
   }
 }
 </style>
