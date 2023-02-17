@@ -5,8 +5,8 @@ import { $delete, $get, $post, $put } from './request'
  * @param params
  * @returns
  */
-export function dashboardList(params: object) {
-  return $get('/dashboard/list', { params })
+export function getDashboard(params: object) {
+  return $get('/dashboard', { params })
 }
 
 /**
@@ -14,8 +14,8 @@ export function dashboardList(params: object) {
  * @param data
  * @returns
  */
-export function dashboardAdd(id: string | number, data: object) {
-  return $post(`/dashboard/add/${id}`, { data })
+export function addDashboard(id: string | number, data: object) {
+  return $post(`/dashboard/${id}`, { data })
 }
 
 /**
@@ -23,8 +23,8 @@ export function dashboardAdd(id: string | number, data: object) {
  * @param data
  * @returns
  */
-export function dashboardPut(id: string | number, data: object) {
-  return $put(`/dashboard/put/${id}`, { data })
+export function putDashboard(id: string | number, data: object) {
+  return $put(`/dashboard/${id}`, { data })
 }
 
 /**
@@ -32,6 +32,6 @@ export function dashboardPut(id: string | number, data: object) {
  * @param data
  * @returns
  */
-export function dashboardDel(id: string | number) {
-  return $delete(`/dashboard/del/${id}`)
+export function delDashboard(id: string | number) {
+  return $delete(`/dashboard/${id}`)
 }
