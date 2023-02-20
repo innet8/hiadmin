@@ -16,7 +16,7 @@ export class WebsocketClient {
   // ws实例
   public messageSocket?: WebSocket
   // 重启ws时间
-  public retryDelay = 200
+  public retryDelay: number = 200
   // 实例化的时候执行该方法
   constructor() {
     try {
