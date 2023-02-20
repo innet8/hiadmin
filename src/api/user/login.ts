@@ -1,7 +1,7 @@
 import { $get, $post } from '../request'
 
 //
-export type LoginType = {
+export interface LoginType {
   username: string
   password: string
 }
