@@ -15,7 +15,7 @@ export function getStatistics(params: object) {
  * @returns
  */
 export function addStatistics(id: string | number, data: object) {
-  return $post(`/statistics/${id}`, { data })
+  return $post(`/statistics/${id}`, data)
 }
 
 /**
@@ -24,7 +24,7 @@ export function addStatistics(id: string | number, data: object) {
  * @returns
  */
 export function putStatistics(id: string | number, data: object) {
-  return $put(`/statistics/${id}`, { data })
+  return $put(`/statistics/${id}`, data)
 }
 
 /**

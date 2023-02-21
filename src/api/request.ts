@@ -1,4 +1,4 @@
-import axios, { type InternalAxiosRequestConfig, type AxiosResponse, type AxiosError } from 'axios'
+import axios, { type AxiosRequestConfig, type InternalAxiosRequestConfig, type AxiosResponse, type AxiosError } from 'axios'
 import { getLanguage, getToken } from '../utils'
 
 // 返回数据结构
@@ -16,7 +16,7 @@ export enum CODE {
   NO_PERMISSION = -2 // 没有权限
 }
 
-interface Config extends InternalAxiosRequestConfig {
+export interface Config {
   isLoading?: boolean // 是否开启加载
   isMessageError?: boolean // 是否开启错误提示弹窗
 }
@@ -43,7 +43,7 @@ const handlerError = (error: AxiosError): AxiosError | Promise<AxiosError> => {
  * @desc: 请求发送前拦截
  * @param { Object } config 配置参数
  */
-request.interceptors.request.use((config: Config) => {
+request.interceptors.request.use((config: InternalAxiosRequestConfig & Config) => {
   // 设置token
   if (getToken()) config.headers['Authorization'] = `Bearer ${getToken()}`
   // 设置语言
@@ -68,7 +68,7 @@ request.interceptors.request.use((config: Config) => {
  */
 request.interceptors.response.use((response: AxiosResponse) => {
   // 所有参数
-  const config: Config = response.config
+  const config: AxiosRequestConfig & Config = response.config
   // 关闭loding
   if (config.isLoading !== false) {
   }
@@ -90,11 +90,45 @@ request.interceptors.response.use((response: AxiosResponse) => {
   return response
 }, handlerError)
 
-// 导出常用方法
-export const $get = request.get
-export const $post = request.post
-export const $put = request.put
-export const $delete = request.delete
+// $get
+export const $get = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+  return new Promise((resolve, reject) => {
+    request
+      .get<BasicResponse<T>>(url, config)
+      .then((res) => resolve(res.data))
+      .catch((error) => reject(error))
+  })
+}
+
+// $post
+export const $post = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+  return new Promise((resolve, reject) => {
+    request
+      .post<BasicResponse<T>>(url, data, config)
+      .then((res) => resolve(res.data))
+      .catch((error) => reject(error))
+  })
+}
+
+// $put
+export const $put = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+  return new Promise((resolve, reject) => {
+    request
+      .put<BasicResponse<T>>(url, data, config)
+      .then((res) => resolve(res.data))
+      .catch((error) => reject(error))
+  })
+}
+
+// $delete
+export const $delete = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+  return new Promise((resolve, reject) => {
+    request
+      .delete<BasicResponse<T>>(url, config)
+      .then((res) => resolve(res.data))
+      .catch((error) => reject(error))
+  })
+}
 
 // 默认导出
 export default request

@@ -12,7 +12,7 @@ export interface LoginType {
  * @returns
  */
 export function login(data: LoginType) {
-  return $post('/login', { data })
+  return $post('/login', data)
 }
 
 /**
