@@ -7,6 +7,7 @@ import { changeLocale } from '../../hooks/useLocale'
 import HInput from '../../components/HInput/HInput.vue'
 import { ref } from 'vue'
 import HButton from '../../components/HButton/HButton.vue'
+import HCheckbox from '../../components/HCheckbox/HCheckbox.vue'
 // 语言列表
 const localeList: { lang: LocaleType; text: string }[] = [
   {
@@ -27,11 +28,12 @@ const loginForm = ref({
   username: '',
   password: '',
 })
+const rememberAccount = ref(false)
 
 // 登录
 const router = useRouter()
 const handleSignIn = () => {
-  alert(`Hello, ${loginForm.value.username}`)
+  alert(`Hello, ${loginForm.value.username}, remember me: ${rememberAccount.value}`)
   setToken('hahaha')
   router.replace('/admin')
 }
@@ -76,10 +78,8 @@ const handleSignIn = () => {
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">{{ $t('rememberMe') }}</label>
-            </div>
+            <HCheckbox disabled v-model="rememberAccount">{{ $t('rememberMe') }}</HCheckbox>
+            <HCheckbox v-model="rememberAccount">{{ $t('rememberMe') }}</HCheckbox>
 
             <div class="text-sm">
               <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">{{ $t('forgotPassword') }}</a>
