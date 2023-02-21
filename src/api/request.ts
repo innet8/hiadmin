@@ -43,7 +43,7 @@ const handlerError = (error: AxiosError): AxiosError | Promise<AxiosError> => {
  * @desc: 请求发送前拦截
  * @param { Object } config 配置参数
  */
-request.interceptors.request.use((config: Config): Config => {
+request.interceptors.request.use((config: Config) => {
   // 设置token
   if (getToken()) config.headers['Authorization'] = `Bearer ${getToken()}`
   // 设置语言
@@ -66,14 +66,14 @@ request.interceptors.request.use((config: Config): Config => {
  * @desc: 服务端响应后拦截
  * @param { Object } response 返回的数据
  */
-request.interceptors.response.use((response: AxiosResponse): AxiosResponse | Promise<AxiosResponse> => {
+request.interceptors.response.use((response: AxiosResponse) => {
   // 所有参数
   const config: Config = response.config
   // 关闭loding
   if (config.isLoading !== false) {
   }
   // 数据处理
-  const data = response.data
+  const data: BasicResponse = response.data
   // 全局错误提示
   if (data.code === CODE.ERROR && config.isMessageError !== false) {
     // Message.error(data.message || 'Error')
