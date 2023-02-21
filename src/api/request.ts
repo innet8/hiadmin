@@ -2,7 +2,7 @@ import axios, { type InternalAxiosRequestConfig, type AxiosResponse, type AxiosE
 import { getLanguage, getToken } from '../utils'
 
 // 返回数据结构
-export type Response<T = any> = {
+export interface BasicResponse<T = any> {
   code: number
   message: string
   data?: T
@@ -87,7 +87,7 @@ request.interceptors.response.use((response: AxiosResponse): AxiosResponse | Pro
     // Message.error(data.message || '没有权限')
   }
   //
-  return data
+  return response
 }, handlerError)
 
 // 导出常用方法
