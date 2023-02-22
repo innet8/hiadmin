@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
         '/ws': {
           target: env.VITE_WEBSOCKET_URL,
           changeOrigin: true,
-          ws: true
+          ws: true // 开启websocket
           // secure: false
           // rewrite: (path) => path.replace(/^\/ws/, '/ws/v1/')
         }
