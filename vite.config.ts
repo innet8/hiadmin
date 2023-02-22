@@ -9,15 +9,21 @@ export default defineConfig(({ mode }) => {
     plugins: [vue()],
     server: {
       host: '0.0.0.0', // 服务器ip地址
-      port: (+env.APP_PORT || 3000), // 本地端口
+      port: +env.APP_PORT || 3000, // 本地端口
       // open: true, // 是否自动在浏览器打开
       proxy: {
         '/api': {
           target: env.VITE_API_URL,
           changeOrigin: true
-          // ws: true,  // 开启 websockets 代理
           // secure: false, // 验证 SSL 证书
           // rewrite: (path) => path.replace(/^\/api/, '/api/v1/'),  // 重写传过来的path路径
+        },
+        '/ws': {
+          target: env.VITE_WEBSOCKET_URL,
+          changeOrigin: true,
+          ws: true
+          // secure: false
+          // rewrite: (path) => path.replace(/^\/ws/, '/ws/v1/')
         }
       }
     },
