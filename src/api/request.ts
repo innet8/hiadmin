@@ -4,6 +4,15 @@ import { getLanguage, getToken } from '../utils'
 import { RequestCodeEnum, ContentTypeEnum } from './../enums/requestEnums'
 import { RequestResponseType, RequestConfigType } from '../types/requestTypes'
 
+/**
+ * // 实例化
+ * const controller = new AbortController();
+ * // 请求
+ * axios.get('url', { signal: controller.signal }).then(function(response) {});
+ * // 取消请求
+ * controller.abort()
+ */
+
 // 创建一个axios实例
 const request = axios.create({
   baseURL: '/api',
