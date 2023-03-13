@@ -1,27 +1,24 @@
 import { type App } from 'vue'
 import { createI18n, type I18n, type I18nOptions } from 'vue-i18n'
+
 import { getLanguage } from '../utils'
-import type { LocaleType } from '../types/config'
+import { type LocaleType, localeKeyList } from '../hooks/useLocale'
 
-// 语言列表
-export const localeList: LocaleType[] = ['en', 'zh-CN', 'zh-TC']
-
-//
 async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
-  let locale: LocaleType = 'zh-CN'
+  let locale: LocaleType = 'ZH_CN'
   // 本地用户设置语言
   const localLang = getLanguage()
   // 浏览器默认语言
   const navigatorLang = window.navigator?.language as LocaleType
   // 判断
-  if (localeList.includes(localLang)) {
+  if (localeKeyList().includes(localLang)) {
     locale = localLang
-  } else if (localeList.includes(navigatorLang)) {
+  } else if (localeKeyList().includes(navigatorLang)) {
     locale = navigatorLang
   } else if (['zh-TW', 'zh-HK'].includes(navigatorLang)) {
-    // 台湾、香港 => zh-TC
-    localeList.includes('zh-TC') && (locale = 'zh-TC')
+    // 台湾、香港 => ZH_TC
+    localeKeyList().includes('ZH_TC') && (locale = 'ZH_TC')
   }
   // 获取语言包
   const defaultLocal = await import(`./lang/${locale}.ts`)

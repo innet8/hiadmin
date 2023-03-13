@@ -1,7 +1,9 @@
 import { unref } from 'vue'
+
 import { i18n } from '../locales/index'
 import { setLanguage } from '../utils'
-import type { LocaleType } from '../types/config'
+import { LanguageEnum } from '../enums/appEnums'
+
 // 设置语言
 export function setI18nLanguage(locale: LocaleType) {
   if (i18n.mode === 'legacy') {
@@ -32,4 +34,32 @@ export async function changeLocale(locale: LocaleType) {
   setI18nLanguage(locale)
   // 设置本地用户语言
   setLanguage(locale)
+}
+
+// 语言类型
+export type LocaleType = keyof typeof LanguageEnum
+
+// 获取语言列表
+export const localeList = () => {
+  let arr: { lang: LocaleType; text: string }[] = []
+  let key: LocaleType
+  for (key in LanguageEnum) {
+    arr.push({
+      lang: key,
+      text: LanguageEnum[key]
+    })
+  }
+  //
+  return arr
+}
+
+//
+export const localeKeyList = () => {
+  let arr: LocaleType[] = []
+  let key: LocaleType
+  for (key in LanguageEnum) {
+    arr.push(key)
+  }
+  //
+  return arr
 }

@@ -1,28 +1,14 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { setToken } from '../../utils'
-import type { LocaleType } from '../../types/config'
-// 切换语言方法
-import { changeLocale } from '../../hooks/useLocale'
-import HInput from '../../components/HInput/HInput.vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+import { setToken } from '../../utils'
+import { changeLocale } from '../../hooks/useLocale'
+import { localeList } from '../../hooks/useLocale'
+
+import HInput from '../../components/HInput/HInput.vue'
 import HButton from '../../components/HButton/HButton.vue'
 import HCheckbox from '../../components/HCheckbox/HCheckbox.vue'
-// 语言列表
-const localeList: { lang: LocaleType; text: string }[] = [
-  {
-    lang: 'en',
-    text: '英文'
-  },
-  {
-    lang: 'zh-CN',
-    text: '简体中文'
-  },
-  {
-    lang: 'zh-TC',
-    text: '繁体中文'
-  }
-]
 
 const loginForm = ref({
   username: '',
@@ -41,7 +27,7 @@ const handleSignIn = () => {
 
 <template>
   <div class="ml-10 flex items-baseline space-x-4">
-    <a v-for="item in localeList" :key="item.lang" href="#" class="px-3 py-2 rounded-md text-sm font-medium" @click="changeLocale(item.lang)">{{ item.text }}</a>
+    <a v-for="item in localeList()" :key="item.lang" href="#" class="px-3 py-2 rounded-md text-sm font-medium" @click="changeLocale(item.lang)">{{ item.text }}</a>
   </div>
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">

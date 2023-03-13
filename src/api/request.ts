@@ -1,32 +1,15 @@
 import axios, { type AxiosRequestConfig, type InternalAxiosRequestConfig, type AxiosResponse, type AxiosError } from 'axios'
+
 import { getLanguage, getToken } from '../utils'
-
-// 返回数据结构
-export interface BasicResponse<T = any> {
-  code: number
-  message: string
-  data?: T
-}
-
-// 状态枚举
-export enum CODE {
-  SUCCESS = 1, // 成功状态码
-  ERROR = 0, // 失败状态码
-  NO_ID = -1, // 身份失效
-  NO_PERMISSION = -2 // 没有权限
-}
-
-export interface Config {
-  isLoading?: boolean // 是否开启加载
-  isMessageError?: boolean // 是否开启错误提示弹窗
-}
+import { RequestCodeEnum, ContentTypeEnum } from './../enums/requestEnums'
+import { RequestResponseType, RequestConfigType } from '../types/requestTypes'
 
 // 创建一个axios实例
 const request = axios.create({
   baseURL: '/api',
   timeout: 5000, // 请求超时时间 默认5秒
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': ContentTypeEnum.JSON
   }
 })
 
@@ -43,7 +26,7 @@ const handlerError = (error: AxiosError): AxiosError | Promise<AxiosError> => {
  * @desc: 请求发送前拦截
  * @param { Object } config 配置参数
  */
-request.interceptors.request.use((config: InternalAxiosRequestConfig & Config) => {
+request.interceptors.request.use((config: InternalAxiosRequestConfig & RequestConfigType) => {
   // 设置token
   if (getToken()) config.headers['Authorization'] = `Bearer ${getToken()}`
   // 设置语言
@@ -68,22 +51,22 @@ request.interceptors.request.use((config: InternalAxiosRequestConfig & Config) =
  */
 request.interceptors.response.use((response: AxiosResponse) => {
   // 所有参数
-  const config: AxiosRequestConfig & Config = response.config
+  const config: AxiosRequestConfig & RequestConfigType = response.config
   // 关闭loding
   if (config.isLoading !== false) {
   }
   // 数据处理
-  const data: BasicResponse = response.data
+  const data: RequestResponseType = response.data
   // 全局错误提示
-  if (data.code === CODE.ERROR && config.isMessageError !== false) {
+  if (data.code === RequestCodeEnum.FAILED && config.isMessageError !== false) {
     // Message.error(data.message || 'Error')
   }
   // 身份失效
-  if (data.code === CODE.NO_ID) {
+  if (data.code === RequestCodeEnum.IDENTITY_FAILURE) {
     // Message.error(data.message || '身份失效')
   }
   // 没有权限
-  if (data.code === CODE.NO_PERMISSION) {
+  if (data.code === RequestCodeEnum.NO_PERMISSION) {
     // Message.error(data.message || '没有权限')
   }
   //
@@ -91,40 +74,40 @@ request.interceptors.response.use((response: AxiosResponse) => {
 }, handlerError)
 
 // $get
-export const $get = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+export const $get = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & RequestConfigType): Promise<RequestResponseType<T>> => {
   return new Promise((resolve, reject) => {
     request
-      .get<BasicResponse<T>>(url, config)
+      .get<RequestResponseType<T>>(url, config)
       .then((res) => resolve(res.data))
       .catch((error) => reject(error))
   })
 }
 
 // $post
-export const $post = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+export const $post = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & RequestConfigType): Promise<RequestResponseType<T>> => {
   return new Promise((resolve, reject) => {
     request
-      .post<BasicResponse<T>>(url, data, config)
+      .post<RequestResponseType<T>>(url, data, config)
       .then((res) => resolve(res.data))
       .catch((error) => reject(error))
   })
 }
 
 // $put
-export const $put = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+export const $put = <T = any, D = any>(url: string, data?: D, config?: AxiosRequestConfig<D> & RequestConfigType): Promise<RequestResponseType<T>> => {
   return new Promise((resolve, reject) => {
     request
-      .put<BasicResponse<T>>(url, data, config)
+      .put<RequestResponseType<T>>(url, data, config)
       .then((res) => resolve(res.data))
       .catch((error) => reject(error))
   })
 }
 
 // $delete
-export const $delete = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & Config): Promise<BasicResponse<T>> => {
+export const $delete = <T = any, D = any>(url: string, config?: AxiosRequestConfig<D> & RequestConfigType): Promise<RequestResponseType<T>> => {
   return new Promise((resolve, reject) => {
     request
-      .delete<BasicResponse<T>>(url, config)
+      .delete<RequestResponseType<T>>(url, config)
       .then((res) => resolve(res.data))
       .catch((error) => reject(error))
   })

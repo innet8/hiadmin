@@ -1,4 +1,4 @@
-import type { LocaleType } from '../types/config'
+import type { LocaleType } from '../hooks/useLocale'
 
 // token key
 export const TOKEN = 'hiadmin_token'.toUpperCase()
