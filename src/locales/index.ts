@@ -6,7 +6,7 @@ import { type LocaleType, localeKeyList } from '../hooks/useLocale'
 
 async function createI18nOptions(): Promise<I18nOptions> {
   // 设置默认语言
-  let locale: LocaleType = 'ZH_CN'
+  let locale: LocaleType = 'zh-CN'
   // 本地用户设置语言
   const localLang = getLanguage()
   // 浏览器默认语言
@@ -18,7 +18,7 @@ async function createI18nOptions(): Promise<I18nOptions> {
     locale = navigatorLang
   } else if (['zh-TW', 'zh-HK'].includes(navigatorLang)) {
     // 台湾、香港 => ZH_TC
-    localeKeyList().includes('ZH_TC') && (locale = 'ZH_TC')
+    localeKeyList().includes('zh-TC') && (locale = 'zh-TC')
   }
   // 获取语言包
   const defaultLocal = await import(`./lang/${locale}.ts`)

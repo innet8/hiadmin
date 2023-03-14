@@ -1,6 +1,6 @@
-//
+// 语言类型枚举，命名不是很规范，对应文件名称
 export enum LanguageEnum {
-  EN = 'English', // 英文
-  ZH_CN = '简体中文', // 简体中文
-  ZH_TC = '繁体中文' // 繁体中文
+  'en' = 'English', // 英文
+  'zh-CN' = '简体中文', // 简体中文
+  'zh-TC' = '繁体中文' // 繁体中文
 }
