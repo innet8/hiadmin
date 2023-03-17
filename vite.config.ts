@@ -1,8 +1,6 @@
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import { resolve } from 'path'
-
 import vue from '@vitejs/plugin-vue'
-import autoprefixer from 'autoprefixer'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -51,11 +49,6 @@ export default defineConfig(({ mode }) => {
           drop_console: true, // 生产环境去除console
           drop_debugger: true // 生产环境去除debugger
         }
-      }
-    },
-    css: {
-      postcss: {
-        plugins: [autoprefixer]
       }
     }
   }
