@@ -56,7 +56,8 @@ export default defineConfig(({ mode }) => {
           // chunkFileNames: 'assets/js/[name]-[hash].js',
           // entryFileNames: 'assets/js/[name]-[hash].js',
           // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
-          manualChunks: { // 分包规则
+          manualChunks: {
+            // 分包规则
             vue: ['vue', 'vue-router', 'vue-i18n', 'pinia', 'axios'] // vue 核心库
           }
         }
